@@ -11,13 +11,13 @@
         <img src="<%= listing.image %>" class="card-img-top"  style="height: 18rem;" >
         <div class="card-body">
           <h5 class="card-title"><%= listing.title %></h5>
-          <br>
+         
           <p class="card-text">
-            <%= listing.description %> <br />
-            <br>
+            <!-- <%= listing.description %> <br /> -->
+           
             &#8377;<%= listing.price.toLocaleString("en-IN") %>
         </p>
-          <a href="/listing/<%= listing._id  %>" class="btn btn-primary">Book Now</a>
+          <a href="/listing/<%= listing._id  %>" class="btn btn-primary">Details</a>
         </div>
       </div>
     

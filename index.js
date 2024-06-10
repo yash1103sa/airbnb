@@ -5,6 +5,8 @@ const Listing = require("./models/listing.js");
 const path = require("path");
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
+const wrapAsync = require("./utils/wrapAsync.js");
+const expressError = require("./utils/expressError.js");
 
 main()
 .then(()=>{
@@ -26,10 +28,10 @@ app.engine("ejs", ejsMate);
 app.use(express.static(path.join(__dirname,"/public")));
 
 // index route
-app.get("/listing",async(req,res)=>{
+app.get("/listing",wrapAsync(async(req,res)=>{
     const allListings=await Listing.find({});
     res.render("listings/index.ejs",{allListings});
-    })
+    }));
 
 
 //new route
@@ -40,40 +42,40 @@ app.get("/listing/new",(req,res)=>{
 
 
 // show route
-app.get("/listing/:id",async(req,res)=>{
+app.get("/listing/:id",wrapAsync(async(req,res)=>{
        let {id}=req.params;
        const listing=await Listing.findById(id);
        res.render("listings/show.ejs",{listing});
-}) 
+}));
 
 // create route
-app.post("/listing",async(req,res)=>{
+app.post("/listing",wrapAsync(async(req,res)=>{
     let newListing = new Listing(req.body.listing);
     await newListing.save();
     res.redirect("/listing");
-})
+}));
 
 // edit route
-app.get("/listing/:id/edit",async(req,res)=>{
+app.get("/listing/:id/edit",wrapAsync(async(req,res)=>{
     let {id}=req.params;
     const listing=await Listing.findById(id);
     res.render("listings/edit.ejs",{listing});
-})
+}));
 
 // update route
-app.put("/listing/:id",async(req,res)=>{
+app.put("/listing/:id",wrapAsync(async(req,res)=>{
     let {id}=req.params;
    const waitedListing = await Listing.findByIdAndUpdate(id,{...req.body.listing});
     res.redirect(`/listing/${id}`);
-})
+}));
 
 // delete route
-app.delete("/listing/:id",async(req,res)=>{
+app.delete("/listing/:id",wrapAsync(async(req,res)=>{
     let {id}=req.params;
     const deletedListing = await Listing.findByIdAndDelete(id);
     console.log(deletedListing);
     res.redirect("/listing")
-})
+}));
 
 
 // app.get("/testlisting",async (req,res)=>{
@@ -88,6 +90,15 @@ app.delete("/listing/:id",async(req,res)=>{
 //     console.log("create");
 //     res.send("testing done");
 // })
+
+app.all("*",(req,res,next)=>{
+    next(new expressError(404,"page not found"));
+});
+
+app.use((err,req,res,next)=>{
+ let{statuscode=500,message}=err;
+res.status(statuscode).render("error.ejs",{message});
+});
 
 app.get("/",(req,res)=>{
     res.send("hi, i am root");
