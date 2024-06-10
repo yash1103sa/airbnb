@@ -7,6 +7,7 @@ const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const wrapAsync = require("./utils/wrapAsync.js");
 const expressError = require("./utils/expressError.js");
+const Review = require("./models/review.js");
 
 main()
 .then(()=>{
@@ -44,7 +45,7 @@ app.get("/listing/new",(req,res)=>{
 // show route
 app.get("/listing/:id",wrapAsync(async(req,res)=>{
        let {id}=req.params;
-       const listing=await Listing.findById(id);
+       const listing=await Listing.findById(id).populate("review");
        res.render("listings/show.ejs",{listing});
 }));
 
@@ -77,6 +78,19 @@ app.delete("/listing/:id",wrapAsync(async(req,res)=>{
     res.redirect("/listing")
 }));
 
+// review
+// post rourte
+app.post("/listing/:id/review",async(req,res)=>{
+  const listing= await Listing.findById(req.params.id);
+  let newReview=new Review(req.body.review);
+
+  listing.review.push(newReview);
+
+  await newReview.save();
+  await listing.save();
+
+res.redirect(`/listing/${listing._id}`);
+})
 
 // app.get("/testlisting",async (req,res)=>{
 //     let sampleListing = new Listing({
