@@ -47,12 +47,17 @@ body{
 }
 .f-info-links a:hover{
     text-decoration: underline;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
 }
 
 .f-info-social i{
     font-size: 1.2rem;
     margin: 1.2rem;
+}
+
+.f-info-social i:hover{
+    font-size: 1.6rem;
+    cursor: pointer;
 }
 
 /* cards */
@@ -105,9 +110,10 @@ body{
 }
 
 
+
 /* review */
 
 .card-body-review{
     border: 1px solid black !important;
-
+    margin: 1rem !important;
 }
