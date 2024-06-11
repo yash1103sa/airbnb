@@ -103,3 +103,11 @@ body{
 .review-card{
     border: 2px !important;
 }
+
+
+/* review */
+
+.card-body-review{
+    border: 1px solid black !important;
+
+}
