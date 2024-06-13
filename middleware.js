@@ -1,3 +1,5 @@
+const Review = require("./models/review");
+
 module.exports.isLoggedIn=(req,res,next)=>{
     console.log(req);
     if(!req.isAuthenticated()){
@@ -14,3 +16,13 @@ module.exports.saveRedirectUrl=(req,res,next)=>{
     }
     next();
 };
+
+module.exports.isreviewAuthor=async(req,res,next)=>{
+    let { id , reviewId} = req.params;
+    let review = await Review.findById(reviewId);
+    if(!review.author.equals(res.locals.curruser)){
+        req.flash("error","you are not owner of this review");
+        return res.redirect(`/listing/${id}`);
+    }
+    next();
+}

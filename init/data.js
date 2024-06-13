@@ -1,16 +1,5 @@
 const sampleListings = [
-    {
-      title: "Cozy Beachfront Cottage",
-      description:
-        "Escape to this charming beachfront cottage for a relaxing getaway. Enjoy stunning ocean views and easy access to the beach.",
-      image: {
-        filename: "listingimage",
-        url: ("public/asset/img1.jpg"),
-      },
-      price: 1500,
-      location: "Malibu",
-      country: "United States",
-    },
+    
     {
       title: "Modern Loft in Downtown",
       description:

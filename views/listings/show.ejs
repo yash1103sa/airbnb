@@ -15,14 +15,14 @@
    
     
 
- <%if(curruser  &&  curruser._id.equals(listing.owner._id)){%> 
+ <%if(curruser  &&  curruser._id.equals(listing.owner._id)){%>  
     <a href="/listing/<%= listing._id %>/edit" class="btn btn-danger">Edit</a>
     <br/>
     <br>
     <form method="POST" action="/listing/<%= listing._id %>?_method=DELETE">
         <button  class="btn btn-dark">Delete</button>
     </form>
-    <%}%> 
+     <%}%>  
 
 
 <hr/>
@@ -62,11 +62,11 @@
             
             <%for(review of listing.review){%>
                 <div class="card-body-review"></div>
-                <h6 class="card-title"><i class="fa-solid fa-user"></i>  &nbsp; &nbsp; @<%= review.author.username._id %></h6>
+                <h6 class="card-title"><i class="fa-solid fa-user"></i>  &nbsp; &nbsp; @<%=review.author.username %></h6>
                 <p class="card-text"><b><%= review.comment %></b></p>
                 <p class="card-subtitle  mb-1 text-body-secondary"><%= review.rating %>star</p>
                 <form method="POST" action="/listing/<%= listing._id %>/review/<%= review._id %>?_method=DELETE" >
-                <button class="btn btn-sm btn-dark">Delete</button>
+                <!-- <button class="btn btn-sm btn-dark">Delete</button> -->
             </form>
                 <br/>
                 
