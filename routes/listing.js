@@ -11,30 +11,28 @@ const Review = require("../models/review.js");
 const { isLoggedIn } = require("../middleware.js");
 mongoose.set('strictPopulate', false);
 
+
 const listingController = require("../controllers/listing.js");
 
-// index route
-router.get("/",wrapAsync(listingController.index));
-
-
+router
+  .route("/")
+  .get(wrapAsync(listingController.index))
+  .post(isLoggedIn,wrapAsync(listingController.createListing));
+  
+  
 //new route
 router.get("/new",isLoggedIn,listingController.renderNewForm);
 
 
+  router
+  .route("/:id")
+  .get(wrapAsync(listingController.showListing))
+  .put(isLoggedIn,wrapAsync(listingController.updateListing))
+  .delete(isLoggedIn,wrapAsync(listingController.destroyListing));
 
-// show route
-router.get("/:id",wrapAsync(listingController.showListing));
-
-// create route
-router.post("/",isLoggedIn,wrapAsync(listingController.createListing));
 
 // edit route
 router.get("/:id/edit",isLoggedIn,wrapAsync(listingController.renderEditForm));
 
-// update route
-router.put("/:id",isLoggedIn,wrapAsync(listingController.updateListing));
-
-// delete route
-router.delete("/:id",isLoggedIn,wrapAsync(listingController.destroyListing));
 
 module.exports=router;
