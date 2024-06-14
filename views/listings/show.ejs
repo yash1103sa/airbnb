@@ -17,14 +17,14 @@
 
  <%if(curruser  &&  curruser._id.equals(listing.owner._id)){%>  
     <a href="/listing/<%= listing._id %>/edit" class="btn btn-danger">Edit</a>
-    <br/>
-    <br>
-    <form method="POST" action="/listing/<%= listing._id %>?_method=DELETE">
-        <button  class="btn btn-dark">Delete</button>
-    </form>
+     <br/>
+     <br>
+     <form method="POST" action="/listing/<%= listing._id %>?_method=DELETE">
+         <button  class="btn btn-dark">Delete</button>
+     </form>
      <%}%>  
 
-
+    
 <hr/>
 
 <!-- review form  -->
