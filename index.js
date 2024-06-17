@@ -71,7 +71,7 @@ const sessionOption ={
 
 
 
-app.get("/",(req,res)=>{
+app.get("/listing",(req,res)=>{
     res.send("hi, i am root");
 })
 
