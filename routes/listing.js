@@ -10,15 +10,18 @@ const expressError = require("../utils/expressError.js");
 const Review = require("../models/review.js");
 const { isLoggedIn } = require("../middleware.js");
 mongoose.set('strictPopulate', false);
-
-
 const listingController = require("../controllers/listing.js");
+const multer  = require('multer');
+const{ storage }=require("../cloudConfig.js");
+const upload = multer({ storage });
 
 router
   .route("/")
   .get(wrapAsync(listingController.index))
-  .post(isLoggedIn,wrapAsync(listingController.createListing));
-  
+  .post(isLoggedIn,upload.single('listing[image]'),wrapAsync(listingController.createListing));
+  // .post((req,res)=>{
+  //   res.send(req.file);
+  // })
   
 //new route
 router.get("/new",isLoggedIn,listingController.renderNewForm);
@@ -27,7 +30,7 @@ router.get("/new",isLoggedIn,listingController.renderNewForm);
   router
   .route("/:id")
   .get(wrapAsync(listingController.showListing))
-  .put(isLoggedIn,wrapAsync(listingController.updateListing))
+  .put(isLoggedIn,upload.single('listing[image]'),wrapAsync(listingController.updateListing))
   .delete(isLoggedIn,wrapAsync(listingController.destroyListing));
 
 

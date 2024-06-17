@@ -1,0 +1,100 @@
+<% layout("/layouts/boilerplate") %>
+
+<body>
+    <h3>Details For Booking</h3>
+    <form method="" action="" class="needs-validation" novalidate>
+
+<div class="mb-3">
+    <label for="Name" class="form-label">Your Name</label>
+    <input name="Name" value="" type="text" class="form-control" required>
+    <div class="invalid-feedback">
+        please enter a Name
+      </div>
+</div>
+
+
+<div class="row">
+    <p>Number of Guest</p>
+    <div class="mb-3 col-md-6">
+        <label for="Adults" class="form-label">Adults</label>
+        <input name="Adults" value="" type="number" class="form-control" required>
+        <div class="invalid-feedback">
+            please enter  How many person you are
+          </div>
+    </div>
+    
+    
+    <div class="mb-3 col-md-6">
+        <label for="children" class="form-label">children</label>
+        <input name="children"value="" type="number" class="form-control" required>
+        <div class="invalid-feedback">
+            please enter How many childs will be there
+          </div>
+    </div>
+    </div>
+
+
+<div class="mb-3">
+    <label for="email" class="form-label">Email</label>
+<input name="email" value=""  class="form-control" required>
+<div class="invalid-feedback">
+    please enter a Email
+  </div>
+</div>
+
+<div class="mb-3">
+    <label for="phone no" class="form-label">Contact No</label>
+    <input name="phone no"  value="" placeholder="" type="number" class="form-control" >
+    
+</div>
+
+<div class="row"> 
+    <p>Select The Date</p>
+    <div class="mb-3 col-md-3">
+        <label for="check-in">Check-In</label>
+        <input type="date" id="check-in" name="check-in">
+    </div>
+
+    <div class="mb-3 col-md-3">
+        <label for="check-out">Check-Out</label>
+        <input type="date" id="check-out" name="check-out">
+    </div>
+</div>
+
+<div class="mb-3">
+    <label for="request" class="form-label">Do you have any special request</label>
+    <input name="request" value="" type="text" class="form-control" >
+    
+</div>
+
+
+
+<div class="mb-3">
+<h4>Payment Method</h4>
+<div class="form-check">
+    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+    <label class="form-check-label" for="flexRadioDefault1">
+     Credit card
+    </label>
+  </div>
+  <div class="form-check">
+    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+    <label class="form-check-label" for="flexRadioDefault2">
+     Upi/scanner
+    </label>
+  </div>
+  <div class="form-check">
+    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+    <label class="form-check-label" for="flexRadioDefault2">
+     Cash
+    </label>
+  </div>
+</div>
+
+<button  class="btn btn-outline-dark btncss ">Book</button>
+
+    <br>
+    <br>
+</form>
+</body>
+</html>

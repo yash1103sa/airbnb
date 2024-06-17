@@ -7,12 +7,12 @@
     <% for(let listing of allListings){ %>
      
     <div class="card " style="width: 15rem;">
-      <a href="/listing/<%= listing._id  %>" ><img src="<%= listing.image %>" class="card-img-top" style="height: 15rem;" ></a>
+      <a href="/listing/<%= listing._id  %>" ><img src="<%= listing.image.url %>" class="card-img-top" style="height: 15rem;" ></a>
         <div class="card-body">
-          <h5 class="card-title"><%= listing.title %></h5>
+          <h5 class="card-title"><b><%= listing.title %></b></h5>
          
           <p class="card-text" >
-            <a href="/listing/<%= listing._id  %>" > &#8377;<%= listing.price%></a>
+            <a href="/listing/<%= listing._id  %>" style="text-decoration: none; color: black; font-weight: 400;"> &#8377;<%= listing.price%></a>
         </p>
          
         </div>

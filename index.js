@@ -1,4 +1,6 @@
-
+if(process.env.NODE_ENV != "production"){
+  require("dotenv").config();
+}
 
 
 const express = require("express");
@@ -16,6 +18,7 @@ const flash = require('connect-flash');
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const User = require("./models/user.js");
+const { isLoggedIn } = require("./middleware.js");
 
 const listingRouter = require("./routes/listing.js");
 const reviewRouter = require("./routes/review.js");
@@ -72,24 +75,15 @@ app.use((req,res,next)=>{
     next();
 })
 
-// app.use("/demouser2",async(req,res)=>{
-//     let fakeuser2 = new User({
-//          email:"demo1010@getMaxListeners.com",
-//          username:"delta-tudent"
-//     });
-
-  
-//     let registereduser= await User.register(fakeuser2,"password");
-//     res.send(registereduser);
-// })
-
-
-
 app.use("/listing",listingRouter);
 app.use("/listing/:id/review",reviewRouter);
 app.use("/",userRouter);
 
-
+app.get("/book",isLoggedIn,(req,res)=>{
+    res.render("listings/book.ejs");
+    req.flash("success","Booked");
+    res.redirect("/listing");
+})
 
 app.all("*",(req,res,next)=>{
     next(new expressError(404,"page not found"));

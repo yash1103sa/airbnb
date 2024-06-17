@@ -118,4 +118,14 @@ body{
     margin: 1rem !important;
 }
 
+/* btn */
+
+.btncss{
+    height: 4rem !important;
+    width: 6rem !important;
+}
+
+.edbtn{
+   text-align: center !important;
+}
 

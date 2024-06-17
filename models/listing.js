@@ -9,10 +9,8 @@ const listingSchema = new Schema({
     },
     description:String,
     image:{
-        filename:{type: String, require:true,},
-        url: {type: String, require:true,},
-        //  default:"https://unsplash.com/photos/white-and-red-wooden-house-miniature-on-brown-table-rgJ1J8SDEAY",  
-        // Set:(v)=>v==""?"https://unsplash.com/photos/white-and-red-wooden-house-miniature-on-brown-table-rgJ1J8SDEAY":v,
+        url:String,
+        filename:String,
      },
     review:
         [{ type: Schema.Types.ObjectId, ref: 'Review' }],   
